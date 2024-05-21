@@ -49,6 +49,8 @@ void enable_virtual_terminal_processing();
 
 #endif
 
+#ifdef __linux__
+
 // Define color escape codes for log output
 
 #define MAX_LOG_MESSAGE_LENGTH 256
