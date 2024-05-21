@@ -5,24 +5,24 @@
  * @date May 19th, 2024
  *
  * @copyright Copyright (c) 2023 Lukas R. Jackson
- * 
+ *
  * @author Lukas R. Jackson (LukasJacksonEG@gmail.com)
- * 
+ *
  * @license BSD-3-Clause License
  *          Redistribution and use in source and binary forms, with or without
  *          modification, are permitted provided that the following conditions are met:
- * 
+ *
  *          1. Redistributions of source code must retain the above copyright notice,
  *             this list of conditions and the following disclaimer.
- * 
+ *
  *          2. Redistributions in binary form must reproduce the above copyright notice,
  *             this list of conditions and the following disclaimer in the documentation
  *             and/or other materials provided with the distribution.
- * 
+ *
  *          3. Neither the name of the copyright holder nor the names of its
  *             contributors may be used to endorse or promote products derived from
  *             this software without specific prior written permission.
- * 
+ *
  *          THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  *          AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  *          IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -43,13 +43,19 @@
 
 #ifdef _WIN32
 
-void enable_virtual_terminal_processing();
+void enable_virtual_terminal_processing(void);
+
+void return_windows_memory_usage(void);
 
 #else /* If windows is not found */
 
 #endif
 
 #ifdef __linux__
+
+void return_linux_memory_usage(void);
+
+#endif
 
 // Define color escape codes for log output
 
@@ -63,20 +69,20 @@ void enable_virtual_terminal_processing();
 #define BBLU "\x1B[1;34m"
 #define BMAG "\x1B[1;35m"
 #define BCYN "\x1B[1;36m"
-#define BWHT "\x1B[1;37m"  // Bold white text
+#define BWHT "\x1B[1;37m" // Bold white text
 #define RESET_TEXT "\x1B[0m"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-variable"
 
 // Define log labels and messages
-static const char* INFO = BBLU "MESSAGE" RESET_TEXT;
-static const char* WARNING = BYEL "WARNING" RESET_TEXT;
-static const char* CRITICAL = BRED "CRITICAL" RESET_TEXT;
+static const char *INFO = BBLU "MESSAGE" RESET_TEXT;
+static const char *WARNING = BYEL "WARNING" RESET_TEXT;
+static const char *CRITICAL = BRED "CRITICAL" RESET_TEXT;
 
-static const char* ERROR_MSG = BRED "LOG" RESET_TEXT;
-static const char* WARNING_MSG = BYEL "LOG" RESET_TEXT;
-static const char* INFO_MSG = BBLU "LOG" RESET_TEXT;
+static const char *ERROR_MSG = BRED "LOG" RESET_TEXT;
+static const char *WARNING_MSG = BYEL "LOG" RESET_TEXT;
+static const char *INFO_MSG = BBLU "LOG" RESET_TEXT;
 
 #pragma GCC diagnostic pop
 
@@ -125,7 +131,7 @@ struct log_message
     log_data data;
 } PACKED;
 
-const char* log(struct log_module *module, struct log_message *message);
+const char *log(struct log_module *module, struct log_message *message);
 
 void event_occured();
 

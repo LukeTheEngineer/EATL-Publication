@@ -5,24 +5,24 @@
  * @date May 19th, 2024
  *
  * @copyright Copyright (c) 2023 Lukas R. Jackson
- * 
+ *
  * @author Lukas R. Jackson (LukasJacksonEG@gmail.com)
- * 
+ *
  * @license BSD-3-Clause License
  *          Redistribution and use in source and binary forms, with or without
  *          modification, are permitted provided that the following conditions are met:
- * 
+ *
  *          1. Redistributions of source code must retain the above copyright notice,
  *             this list of conditions and the following disclaimer.
- * 
+ *
  *          2. Redistributions in binary form must reproduce the above copyright notice,
  *             this list of conditions and the following disclaimer in the documentation
  *             and/or other materials provided with the distribution.
- * 
+ *
  *          3. Neither the name of the copyright holder nor the names of its
  *             contributors may be used to endorse or promote products derived from
  *             this software without specific prior written permission.
- * 
+ *
  *          THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  *          AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  *          IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -41,7 +41,13 @@
 #include <string.h>
 #ifdef _WIN32
 #include <windows.h>
-#else /* If windows is not found */
+#include <psapi.h>
+
+#endif
+
+#ifdef __linux__
+
+#include <sys/resource.h>
 
 #endif
 
@@ -51,14 +57,17 @@
 
 #ifdef _WIN32
 
-void enable_virtual_terminal_processing() {
+void enable_virtual_terminal_processing()
+{
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (hOut == INVALID_HANDLE_VALUE) {
+    if (hOut == INVALID_HANDLE_VALUE)
+    {
         return;
     }
 
     DWORD dwMode = 0;
-    if (!GetConsoleMode(hOut, &dwMode)) {
+    if (!GetConsoleMode(hOut, &dwMode))
+    {
         return;
     }
 
@@ -66,5 +75,31 @@ void enable_virtual_terminal_processing() {
     SetConsoleMode(hOut, dwMode);
 }
 
-#else
+void return_windows_memory_usage()
+{
+    PROCESS_MEMORY_COUNTERS pmc;
+    if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc)))
+    {
+        printf("Working set size: %ld bytes\n", pmc.WorkingSetSize);
+        printf("Peak working set size: %ld bytes\n", pmc.PeakWorkingSetSize);
+        printf("Pagefile usage: %ld bytes\n", pmc.PagefileUsage);
+        printf("Peak pagefile usage: %ld bytes\n", pmc.PeakPagefileUsage);
+    }
+    else
+    {
+        printf("Could not get memory info\n");
+    }
+}
+
+#endif
+
+#ifdef __linux__
+
+void return_linux_memory_usage(void)
+{
+    struct rusage usage;
+    getrusage(RUSAGE_SELF, &usage);
+    printf("Maximum resident set size: %ld kilobytes\n", usage.ru_maxrss);
+}
+
 #endif
