@@ -1,0 +1,23 @@
+[1/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/log_macro.c.obj
+In file included from /home/lukas/Desktop/EATL-Publication/tests/generic/main/log_macro.c:1:
+/home/lukas/Desktop/EATL-Publication/tests/generic/main/../../../src/common/logger.h:118:13: warning: conflicting types for built-in function 'log'; expected 'double(double)' [-Wbuiltin-declaration-mismatch]
+  118 | const char* log(struct log_module *module, struct log_message *message);
+      |             ^~~
+/home/lukas/Desktop/EATL-Publication/tests/generic/main/../../../src/common/logger.h:43:1: note: 'log' is declared in header '<math.h>'
+   42 | #include <string.h>
+  +++ |+#include <math.h>
+   43 | 
+[2/9] Performing build step for 'bootloader'
+[1/1] cd /home/lukas/Desktop/EATL-Publication/tests/generic/build/bootloader/esp-idf/esptool_py && /home/lukas/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/lukas/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/lukas/Desktop/EATL-Publication/tests/generic/build/bootloader/bootloader.bin
+Bootloader binary size 0x6860 bytes. 0x7a0 bytes (7%) free.
+[3/7] Linking C static library esp-idf/main/libmain.a
+[4/7] Generating ld/sections.ld
+[5/7] Linking CXX executable logger.elf
+[6/7] Generating binary image from built executable
+esptool.py v4.7.0
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/lukas/Desktop/EATL-Publication/tests/generic/build/logger.bin
+[7/7] cd /home/lukas/Desktop/EATL-Publication/tests/generic/build/esp-idf/esptool_py && /home/lukas/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/lukas/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/lukas/Desktop/EATL-Publication/tests/generic/build/partition_table/partition-table.bin /home/lukas/Desktop/EATL-Publication/tests/generic/build/logger.bin
+logger.bin binary size 0x2b350 bytes. Smallest app partition is 0x100000 bytes. 0xd4cb0 bytes (83%) free.

@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/CMakeFiles/bootloader
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/CMakeFiles/bootloader.rule
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/CMakeFiles/bootloader-complete.rule
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/lukas/Desktop/EATL-Publication/tests/generic/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
