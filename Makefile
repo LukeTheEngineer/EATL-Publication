@@ -1,11 +1,18 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -ggdb -std=c11
+LDFLAGS =
 
-SRCDIR = ../../../
-SRCS = tests/nRF-generic/src/log_macro.c src/logger.c
-OBJS = $(SRCS:.c=.o)
-
-TARGET = nrf-generic
+ifeq ($(OS),Windows_NT)
+    SRCS = tests\nRF-generic\src\log_macro.c src\logger.c
+    OBJS = tests\nRF-generic\src\log_macro.o src\logger.o
+    TARGET = WIN_nrf-generic
+    RM = del /Q
+else
+    SRCS = tests/nRF-generic/src/log_macro.c src/logger.c
+    OBJS = tests/nRF-generic/src/log_macro.o src/logger.o
+    TARGET = LIN_nrf-generic
+    RM = rm -f
+endif
 
 .PHONY: all clean
 

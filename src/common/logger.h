@@ -41,6 +41,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef _WIN32
+
+void enable_virtual_terminal_processing();
+
+#else /* If windows is not found */
+
+#endif
+
 // Define color escape codes for log output
 
 #define MAX_LOG_MESSAGE_LENGTH 256
