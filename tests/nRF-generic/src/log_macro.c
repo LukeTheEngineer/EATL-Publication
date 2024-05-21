@@ -2,6 +2,7 @@
 #include "../../../src/common/logger.h"
 #ifdef _WIN32
 #include <windows.h>
+#include <psapi.h>
 #endif
 #ifdef __linux__
 #include <sys/resource.h>
