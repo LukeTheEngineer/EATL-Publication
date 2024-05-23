@@ -5,9 +5,12 @@
 
 #ifdef __linux__
 
+#include<unistd.h>
+#include<fcntl.h>
+
 long get_program_size(void) {
     char buffer[64] = {0};
-    int fd = open("filename", O_RDONLY); // Replace "filename" with the actual filename or pass it as a parameter
+    int fd = open("LIN-evnt-driven", O_RDONLY); // Replace "filename" with the actual filename or pass it as a parameter
     if (fd == -1) {
         perror("open");
         return -1;
