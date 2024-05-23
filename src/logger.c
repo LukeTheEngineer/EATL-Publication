@@ -104,22 +104,43 @@ void return_linux_memory_usage(void)
 
 #endif
 
-const char *log_mesg(struct log_module *module, int err, struct log_message *message)
+void event_occured(struct log_module *module, struct log_message *message)
 {
-    if(module == NULL)
+    if (module == NULL)
     {
         printf("Log module returned NULL");
-        return NULL;
+        return;
     }
-    //Do something with *message.
+    printf("%s: An event occured ", module->module_name);
+    if (module->callback)
+    {
+        printf("Called callback");
+        module->callback(message->message);
+        return;
+    }
 }
 
-void event_occured(struct log_module *module, int err, logcallback log_callback)
+long long perform_calculation(struct log_module *module, long long a, long long b)
 {
-    if(module == NULL)
+    if (module == NULL)
     {
         printf("Log module returned NULL");
-        return NULL;
+        return -1;
     }
-    //Do something with *message.
+    long long result = a * b;
+
+    /* Using a swtich-statement to speed things up*/
+    if (result > CALCULATION_MAXIMUM)
+    {
+        event_occured(module, "Calculation exceeds threshold");
+    }
+    else if (result < CALCULATION_MINIMUM)
+    {
+        event_occured(module, "Calculation falls below threshold");
+    }
+    else
+    {
+        printf("Result is within both thresholds (result: %lld)", result);
+    }
+    return result;
 }

@@ -7,13 +7,13 @@ LDFLAGS =
 CFLAGS ?= $(DEFAULT_CFLAGS)
 
 ifeq ($(OS),Windows_NT)
-    SRCS = tests\nRF-generic\src\log_macro.c src\logger.c
-    OBJS = tests\nRF-generic\src\log_macro.o src\logger.o
+    SRCS = tests\nRF-macro\src\log_macro.c src\logger.c
+    OBJS = tests\nRF-macro\src\log_macro.o src\logger.o
     TARGET = WIN_nrf-generic.exe
     RM = del /Q
 else
-    SRCS = tests/nRF-generic/src/log_macro.c src/logger.c
-    OBJS = tests/nRF-generic/src/log_macro.o src/logger.o
+    SRCS = tests/nRF-macro/src/log_macro.c src/logger.c
+    OBJS = tests/nRF-macro/src/log_macro.o src/logger.o
     TARGET = LIN_nrf-generic
     RM = rm -f
 endif

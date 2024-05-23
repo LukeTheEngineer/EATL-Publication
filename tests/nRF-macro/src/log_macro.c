@@ -8,10 +8,9 @@
 #include <sys/resource.h>
 #endif
 
-void call_custom_callback(const char* message);
-
 int main(void)
 {
+
 #ifdef _WIN32
     enable_virtual_terminal_processing();
     return_windows_memory_usage();
@@ -19,7 +18,6 @@ int main(void)
 #ifdef __linux__
     return_linux_memory_usage();
 #endif
-    int err;
 
     LOG_MSG(INFO, "Example of LOG MESSAGE macro");
     LOG_WARNING(WARNING, "Example of LOG WARNING macro");

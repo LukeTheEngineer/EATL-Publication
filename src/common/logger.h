@@ -62,6 +62,11 @@ void return_linux_memory_usage(void);
 #define MAX_LOG_MESSAGE_LENGTH 256
 #define MAX_MODULE_NAME_LENGTH 50
 
+enum calc_limit {
+    CALCULATION_MAXIMUM = 100, /* If a calculation is over a certain amount, trigger an event */
+    CALCULATION_MINIMUM = 10   /* If a calculation is below this amount, trigger an event */
+};
+
 #define BBLK "\x1B[1;30m"
 #define BRED "\x1B[1;31m"
 #define BGRN "\x1B[1;32m"
@@ -131,12 +136,12 @@ struct log_module
  * };
  * 
  */
-typedef union
+union log_data
 {
     const char *string_data;
     int int_data;
     double double_data;
-} log_data;
+}PACKED ;
 
 /**
  * @brief Construct a very basic log message
@@ -151,11 +156,11 @@ typedef union
 struct log_message
 {
     const char *message;
-    log_data data;
+    union log_data data;
 } PACKED;
 
-const char *log_mesg(struct log_module *module, int err, struct log_message *message);
+void event_occured(struct log_module *module, struct log_message *message);
 
-void event_occured(struct log_module *module, int err, logcallback log_callback);
+long long perform_calculation(struct log_module *module, long long a, long long b);
 
 #endif /* logger_h_ */
