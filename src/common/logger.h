@@ -97,25 +97,40 @@ static const char *INFO_MSG = BBLU "LOG" RESET_TEXT;
 // Define packed attribute for structs
 #define PACKED __attribute__((packed))
 
-// Define the types of data that can be logged
-typedef enum
-{
-    LOG_TYPE_STRING,
-    LOG_TYPE_INT,
-    LOG_TYPE_DOUBLE
-} log_data_type;
-
 // Define a callback type for logging functions
 typedef void (*logcallback)(const char *);
 
-// Struct to hold a logging module's information
+/**
+ * @brief Holds the logger module's information
+ * 
+ * Two members of this struct initialize the module name and callback for specifc events.
+ * This is especially needed for event-driven programming as it gives the programmer the power
+ * to register their own functions with existing APIs without directly modifying the API itself. 
+ * 
+ * The Zephyr RTOS uses event-driven programming which calls for the register of callback functions.
+ * 
+ */
 struct log_module
 {
     const char *module_name;
     logcallback callback;
 } PACKED;
 
-// Union to hold different types of log data
+/**
+ * @brief Log data used to construct a log message
+ * 
+ * This union contains various members that allow the programmer to initialize select members 
+ * depending on the type of data type needed. For example, the programmer may only require the double_data member 
+ * and may only initialize it like so:
+ * 
+ * const double sensor_data = 55.00;
+ * 
+ * const log_data double_data_1 = 
+ * {
+ *      .double_data = sensor_data,
+ * };
+ * 
+ */
 typedef union
 {
     const char *string_data;
@@ -123,18 +138,24 @@ typedef union
     double double_data;
 } log_data;
 
-// Struct to hold a log message
+/**
+ * @brief Construct a very basic log message
+ * 
+ * This struct contains only message and data since we're not too focused on other members.
+ * Timestamps are not added since headers such as time.h don't work on embedded systems.
+ * Microcontrollers lack proper hardware to return the time.
+ * 
+ * This may be updated in the future.
+ * 
+ */
 struct log_message
 {
     const char *message;
-    log_data_type type;
     log_data data;
 } PACKED;
 
-const char *log(struct log_module *module, struct log_message *message);
+const char *log_mesg(struct log_module *module, int err, struct log_message *message);
 
-void event_occured();
-
-void register_logger(struct log_module *module);
+void event_occured(struct log_module *module, int err, logcallback log_callback);
 
 #endif /* logger_h_ */

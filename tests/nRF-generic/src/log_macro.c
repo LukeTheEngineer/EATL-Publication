@@ -8,6 +8,8 @@
 #include <sys/resource.h>
 #endif
 
+void call_custom_callback(const char* message);
+
 int main(void)
 {
 #ifdef _WIN32
@@ -17,6 +19,8 @@ int main(void)
 #ifdef __linux__
     return_linux_memory_usage();
 #endif
+    int err;
+
     LOG_MSG(INFO, "Example of LOG MESSAGE macro");
     LOG_WARNING(WARNING, "Example of LOG WARNING macro");
     LOG_ERROR(CRITICAL, "Example of LOG ERROR macro");

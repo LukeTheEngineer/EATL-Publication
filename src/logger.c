@@ -103,3 +103,23 @@ void return_linux_memory_usage(void)
 }
 
 #endif
+
+const char *log_mesg(struct log_module *module, int err, struct log_message *message)
+{
+    if(module == NULL)
+    {
+        printf("Log module returned NULL");
+        return NULL;
+    }
+    //Do something with *message.
+}
+
+void event_occured(struct log_module *module, int err, logcallback log_callback)
+{
+    if(module == NULL)
+    {
+        printf("Log module returned NULL");
+        return NULL;
+    }
+    //Do something with *message.
+}
