@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 *.drawio
+*.txt
 
 # Object files
 *.o

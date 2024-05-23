@@ -8,15 +8,24 @@ CFLAGS ?= $(DEFAULT_CFLAGS)
 
 # Define variables for Windows
 ifeq ($(OS),Windows_NT)
+    # Makes the Windows version of the logger macro program for Method One
     WINDOWS_SRCS = tests\nRF-macro\src\log_macro.c src\logger.c
     WINDOWS_OBJS = tests\nRF-macro\src\log_macro.o src\logger.o
     WINDOWS_TARGET = WIN_nrf-generic.exe
+
+    # Create custom rules for compiling certain folders. 
+    
+    # For the make clean command 
     RM = del /Q
 else
-    # Define variables for Linux
+    # Makes the Linux version of the logger macro program for Method One 
     LINUX_SRCS = tests/nRF-macro/src/log_macro.c src/logger.c
     LINUX_OBJS = tests/nRF-macro/src/log_macro.o src/logger.o
     LINUX_TARGET = LIN_nrf-generic
+
+    
+
+    # For the make clean command
     RM = rm -f
 endif
 

@@ -1,4 +1,5 @@
 #include "../../../src/common/logger.h"
+#include <stdio.h>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -11,6 +12,9 @@
 #define MODULE_NAME "EATL-PUB"
 
 void call_custom_callback(const char *message);
+
+extern long long get_cpu_info();
+extern long long get_program_size();
 
 int main(void)
 {
@@ -34,11 +38,22 @@ int main(void)
         };
 
 #ifdef _WIN32
+
+    const char *filename = "WIN-evnt-driven.exe";
+    long size = get_program_size(filename);
+    if (size != -1) {
+        printf("The size of the program is: %ld bytes\n", size);
+    }
+
     enable_virtual_terminal_processing();
     return_windows_memory_usage();
+    get_program_size();
+    get_cpu_info();
 #endif
 #ifdef __linux__
     return_linux_memory_usage();
+    get_program_size();
+    get_cpu_info();
 #endif
 
     int a = 250000;
