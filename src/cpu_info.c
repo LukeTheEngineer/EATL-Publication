@@ -6,33 +6,27 @@
 #ifdef __linux__
 
 long get_program_size(void) {
-    long program_size;
     char buffer[64] = {0};
-    int fd;
+    int fd = open("filename", O_RDONLY); // Replace "filename" with the actual filename or pass it as a parameter
+    if (fd == -1) {
+        perror("open");
+        return -1;
+    }
 
-    // Inline assembly to open, read, and close the file
-    __asm__ __volatile__ (
-        "mov $2, %%eax\n"                // sys_open
-        "lea filename(%%rip), %%rdi\n"   // filename
-        "xor %%rsi, %%rsi\n"             // O_RDONLY
-        "syscall\n"
-        "mov %%rax, %1\n"                // Save file descriptor
+    ssize_t bytes_read = read(fd, buffer, sizeof(buffer) - 1); // -1 to leave space for null terminator
+    if (bytes_read == -1) {
+        perror("read");
+        close(fd);
+        return -1;
+    }
 
-        "mov $0, %%eax\n"                // sys_read
-        "mov %2, %%rsi\n"                // buffer
-        "mov $64, %%rdx\n"               // buffer length
-        "syscall\n"
+    close(fd);
 
-        "mov $3, %%eax\n"                // sys_close
-        "syscall\n"
-
-        : "=r" (program_size), "=r" (fd)
-        : "r" (buffer)
-        : "rax", "rdi", "rsi", "rdx"
-    );
+    // Ensure buffer is null-terminated
+    buffer[bytes_read] = '\0';
 
     // Convert ASCII to integer
-    program_size = atoi(buffer);
+    long program_size = atol(buffer);
     return program_size;
 }
 
