@@ -29,7 +29,7 @@ int main(void)
 
     struct log_message message =
         {
-            .message = "This is a log message",
+            .message = "This is a log message\n",
             .data = flight_data,
         };
 
@@ -61,5 +61,5 @@ int main(void)
 
 void call_custom_callback(const char *message)
 {
-    printf("Callback message: %s",message);
+    printf("Callback message: %s\n",message);
 }

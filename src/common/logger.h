@@ -159,7 +159,7 @@ struct log_message
     union log_data data;
 } PACKED;
 
-void event_occured(struct log_module *module, struct log_message *message);
+void event_occured(struct log_module *module, const char *message);
 
 long long perform_calculation(struct log_module *module, long long a, long long b);
 
