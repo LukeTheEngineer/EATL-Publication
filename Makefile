@@ -57,13 +57,15 @@ $(WINDOWS_EVT_TARGET): $(WINDOWS_EVT_OBJS)
 	$(CC) $(LDFLAGS) $^ -o $@
 
 # Linux macro logging build rule
-linux-macro: $(LINUX_TARGET)
+linux-macro: $(LINUX_MACRO_TARGET)
 
 $(LINUX_MACRO_TARGET): $(LINUX_MACRO_OBJS)
 	$(CC) $(LDFLAGS) $^ -o $@
 
 # Linux event-driven logging build rule
 linux-event: $(LINUX_EVT_TARGET)
+
+$(LINUX_EVT_TARGET): $(LINUX_EVT_OBJS)
 	$(CC) $(LDFLAGS) $^ -o $@
 
 # Compilation rule
