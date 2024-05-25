@@ -1,0 +1,221 @@
+PS C:\Users\lukas\OneDrive\Desktop\EATL-Publication> gdb WIN_nrf-event-driven.exe
+GNU gdb (GDB) 12.1
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-w64-mingw32".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from WIN_nrf-event-driven.exe...
+(gdb) info functions
+All defined functions:
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/crt/CRT_fp10.c:
+9:      void _fpreset(void);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/crt/crt_handler.c:
+194:    long int _gnu_exception_handler(EXCEPTION_POINTERS *);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:
+169:    int WinMainCRTStartup(void);
+195:    int mainCRTStartup(void);
+113:    static void __mingw_invalidParameterHandler(const wchar_t *, const wchar_t *, const wchar_t *, unsigned int, uintptr_t);
+222:    static int __tmainCRTStartup(void);
+126:    static int pre_c_init(void);
+154:    static void pre_cpp_init(void);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/crt/dllargv.c:
+18:     int _setargv(void);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/crt/gccmain.c:
+32:     void __do_global_ctors(void);
+20:     void __do_global_dtors(void);
+53:     void __main(void);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/crt/pesect.c:
+45:     PIMAGE_SECTION_HEADER _FindPESection(PBYTE, DWORD_PTR);
+67:     PIMAGE_SECTION_HEADER _FindPESectionByName(const char *);
+130:    PIMAGE_SECTION_HEADER _FindPESectionExec(size_t);
+160:    PBYTE _GetPEImageBase(void);
+172:    WINBOOL _IsNonwritableInCurrentImage(PBYTE);
+24:     WINBOOL _ValidateImageBase(PBYTE);
+112:    int __mingw_GetSectionCount(void);
+98:     PIMAGE_SECTION_HEADER __mingw_GetSectionForAddress(LPVOID);
+192:    const char *__mingw_enum_import_library_names(int);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/crt/pseudo-reloc.c:
+484:    void _pei386_runtime_relocator(void);
+84:     static void __report_error(const char *, ...);
+183:    static void mark_section_writable(LPVOID);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/crt/tlssup.c:
+76:     BOOL __dyn_tls_init(HANDLE, DWORD, LPVOID);
+109:    int __tlregdtor(_PVFV);
+136:    static BOOL __dyn_tls_dtor(HANDLE, DWORD, LPVOID);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/crt/tlsthrd.c:
+42:     int ___w64_mingwthr_add_key_dtor(DWORD, void (*)(void *));
+65:     int ___w64_mingwthr_remove_key_dtor(DWORD);
+122:    WINBOOL __mingw_TLScallback(HANDLE, DWORD, LPVOID);
+99:     static void __mingwthr_run_key_dtors(void);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/gdtoa/dmisc.c:
+74:     void __freedtoa(char *);
+56:     char *__nrv_alloc_D2A(char *, char **, int);
+85:     int __quorem_D2A(__Bigint *, __Bigint *);
+--Type <RET> for more, q to quit, c to continue without paging--
+38:     char *__rv_alloc_D2A(int);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/gdtoa/gdtoa.c:
+106:    char *__gdtoa(FPI *, int, ULong *, int *, int, int, int *, char **);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/gdtoa/gmisc.c:
+34:     void __rshift_D2A(__Bigint *, int);
+62:     int __trailz_D2A(__Bigint *);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/gdtoa/misc.c:
+122:    __Bigint *__Balloc_D2A(int);
+166:    void __Bfree_D2A(__Bigint *);
+658:    double __b2d_D2A(__Bigint *, int *);
+541:    int __cmp_D2A(__Bigint *, __Bigint *);
+713:    __Bigint *__d2b_D2A(double, int *, int *);
+569:    __Bigint *__diff_D2A(__Bigint *, __Bigint *);
+313:    __Bigint *__i2b_D2A(int);
+493:    __Bigint *__lshift_D2A(__Bigint *, int);
+325:    __Bigint *__mult_D2A(__Bigint *, __Bigint *);
+228:    __Bigint *__multadd_D2A(__Bigint *, int, int);
+429:    __Bigint *__pow5mult_D2A(__Bigint *, int);
+843:    char *__strcp_D2A(char *, const char *);
+72:     static void dtoa_lock(int);
+62:     static void dtoa_lock_cleanup(void);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/misc/__p__acmdln.c:
+12:     char **__p__acmdln(void);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/misc/__p__commode.c:
+12:     int *__p__commode(void);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/misc/__p__fmode.c:
+12:     int *__p__fmode(void);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/misc/invalid_parameter_handler.c:
+15:     static _invalid_parameter_handler mingw_get_invalid_parameter_handler(void);
+7:      static _invalid_parameter_handler mingw_set_invalid_parameter_handler(_invalid_parameter_handler);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/misc/mbrtowc.c:
+16:     static int __mbrtowc_cp(wchar_t * restrict, const char * restrict, size_t, mbstate_t * restrict, const unsigned int, const unsigned int);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/misc/wcrtomb.c:
+18:     static int __wcrtomb_cp(char *, wchar_t, const unsigned int, const unsigned int);
+
+File C:/M/mingw-w64-crt-git/src/mingw-w64/mingw-w64-crt/stdio/mingw_pformat.c:
+2412:   int __mingw_pformat(int, void *, int, const char *, va_list);
+1091:   static char *__pformat_cvt(int, long double, int, int *, int *);
+1858:   static void __pformat_efloat(long double, __pformat_t *);
+1530:   static void __pformat_emit_efloat(int, char *, int, __pformat_t *);
+1367:   static void __pformat_emit_float(int, char *, int, __pformat_t *);
+1319:   static void __pformat_emit_inf_or_nan(int, char *, __pformat_t *);
+1226:   static void __pformat_emit_radix_point(__pformat_t *);
+2007:   static void __pformat_emit_xfloat(__pformat_t *, __pformat_fpreg_t);
+1598:   static void __pformat_float(long double, __pformat_t *);
+1895:   static void __pformat_gfloat(long double, __pformat_t *);
+--Type <RET> for more, q to quit, c to continue without paging--
+711:    static void __pformat_int(__pformat_t *, __pformat_intarg_t);
+388:    static void __pformat_putc(int, __pformat_t *);
+413:    static void __pformat_putchars(const char *, int, __pformat_t *);
+539:    static void __pformat_puts(const char *, __pformat_t *);
+562:    static void __pformat_wputchars(const wchar_t *, int, __pformat_t *);
+885:    static void __pformat_xint(int, __pformat_t *, __pformat_intarg_t);
+
+File D:/a/msys64/mingw64/include/math.h:
+171:    void __mingw_raise_matherr(int, const char *, double, double, double);
+173:    void __mingw_setusermatherr(int (*)(struct _exception *));
+281:    int _matherr(struct _exception *);
+
+File D:/a/msys64/mingw64/include/stdio.h:
+93:     FILE *__acrt_iob_func(unsigned int);
+193:    int __mingw_vfprintf(FILE *, const char *, va_list);
+1456:   void _lock_file(FILE *);
+1457:   void _unlock_file(FILE *);
+
+File D:/a/msys64/mingw64/include/stdlib.h:
+425:    int atexit(_PVFV);
+
+File D:/a/msys64/mingw64/include/string.h:
+65:     size_t strnlen(const char *, size_t);
+138:    size_t wcsnlen(const wchar_t *, size_t);
+
+File D:/a/msys64/mingw64/include/wchar.h:
+1450:   size_t mbrlen(const char * restrict, size_t, mbstate_t * restrict);
+1451:   size_t mbrtowc(wchar_t * restrict, const char * restrict, size_t, mbstate_t * restrict);
+1452:   size_t mbsrtowcs(wchar_t * restrict, const char ** restrict, size_t, mbstate_t * restrict);
+1453:   size_t wcrtomb(char *, wchar_t, mbstate_t *);
+1454:   size_t wcsrtombs(char *, const wchar_t **, size_t, mbstate_t *);
+
+Non-debugging symbols:
+0x0000000140001510  __gcc_register_frame
+0x0000000140001520  __gcc_deregister_frame
+0x0000000140001530  printf
+0x0000000140001584  main
+0x0000000140001657  call_custom_callback
+0x0000000140001690  printf
+0x00000001400016e4  event_occured
+0x000000014000174c  perform_calculation
+0x0000000140002870  ___chkstk_ms
+0x0000000140007d80  __C_specific_handler
+0x0000000140007d88  ___lc_codepage_func
+0x0000000140007d90  ___mb_cur_max_func
+0x0000000140007d98  __getmainargs
+0x0000000140007da0  __iob_func
+0x0000000140007da8  __set_app_type
+0x0000000140007db0  __setusermatherr
+0x0000000140007db8  _amsg_exit
+0x0000000140007dc0  _cexit
+0x0000000140007dc8  _errno
+0x0000000140007dd0  _initterm
+0x0000000140007dd8  _lock
+0x0000000140007de0  _onexit
+--Type <RET> for more, q to quit, c to continue without paging--
+0x0000000140007de8  _unlock
+0x0000000140007df0  abort
+0x0000000140007df8  calloc
+0x0000000140007e00  exit
+0x0000000140007e08  fprintf
+0x0000000140007e10  fputc
+0x0000000140007e18  free
+0x0000000140007e20  fwrite
+0x0000000140007e28  localeconv
+0x0000000140007e30  malloc
+0x0000000140007e38  memcpy
+0x0000000140007e40  memset
+0x0000000140007e48  signal
+0x0000000140007e50  strerror
+0x0000000140007e58  strlen
+0x0000000140007e60  strncmp
+0x0000000140007e68  vfprintf
+0x0000000140007e70  wcslen
+0x0000000140007e80  WideCharToMultiByte
+0x0000000140007e88  VirtualQuery
+0x0000000140007e90  VirtualProtect
+0x0000000140007e98  TlsGetValue
+0x0000000140007ea0  Sleep
+0x0000000140007ea8  SetUnhandledExceptionFilter
+0x0000000140007eb0  MultiByteToWideChar
+0x0000000140007eb8  LeaveCriticalSection
+0x0000000140007ec0  IsDBCSLeadByteEx
+0x0000000140007ec8  InitializeCriticalSection
+0x0000000140007ed0  GetStartupInfoA
+0x0000000140007ed8  GetLastError
+0x0000000140007ee0  EnterCriticalSection
+0x0000000140007ee8  DeleteCriticalSection
+0x0000000140007ef0  register_frame_ctor
+0x0000000140007f00  ___CTOR_LIST__
+0x0000000140007f18  ___DTOR_LIST__
