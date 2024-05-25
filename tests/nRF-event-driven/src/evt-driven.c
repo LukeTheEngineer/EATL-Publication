@@ -41,7 +41,8 @@ int main(void)
 
     const char *filename = "WIN-evnt-driven.exe";
     long size = get_program_size(filename);
-    if (size != -1) {
+    if (size != -1)
+    {
         printf("The size of the program is: %ld bytes\n", size);
     }
 
@@ -76,5 +77,5 @@ int main(void)
 
 void call_custom_callback(const char *message)
 {
-    printf("Callback message: %s\n",message);
+    printf("Callback message: %s\n", message);
 }

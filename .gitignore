@@ -54,3 +54,8 @@ Mkfile.old
 dkms.conf
 build/
 .vscode/
+.west/
+bootloader/
+modules/
+tools/
+zephyr/

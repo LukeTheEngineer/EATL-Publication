@@ -111,11 +111,14 @@ void event_occured(struct log_module *module, const char *message)
         printf("Log module returned NULL\n");
         return;
     }
-    printf("%s: An event occured \n", module->module_name);
     if (module->callback)
     {
         module->callback(message);
         return;
+    }
+    else
+    {
+        printf("%s: An event occured \n", module->module_name);
     }
 }
 

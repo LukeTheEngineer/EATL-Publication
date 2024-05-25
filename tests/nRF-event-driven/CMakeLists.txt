@@ -5,4 +5,4 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(Event_Driven_Logging)
 
-target_sources(app PRIVATE src/evt-driven.c ../../../src/logger.c)
+target_sources(app PRIVATE src/evt-driven.c ../../../src/logger.c ../../../src/cpu_info.c)
