@@ -112,8 +112,8 @@ long get_cpu_info(void) {
     }
     free(buffer);
 
-    printf("Number of logical processors: %lu\n", sysInfo.dwNumberOfProcessors);
-    printf("Number of physical cores: %d\n", numOfProcessors);
+    printf("Number of logical processors: %lu\n\n", sysInfo.dwNumberOfProcessors);
+    printf("Number of physical cores: %d\n\n", numOfProcessors);
 
     return sysInfo.dwNumberOfProcessors;
 }

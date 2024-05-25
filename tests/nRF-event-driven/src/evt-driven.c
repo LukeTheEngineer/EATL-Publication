@@ -9,7 +9,7 @@
 #include <sys/resource.h>
 #endif
 
-#define MODULE_NAME "EATL-PUB"
+#define MODULE_NAME "EATL-KERNEL"
 
 void call_custom_callback(const char *message);
 
@@ -48,7 +48,6 @@ int main(void)
 
     enable_virtual_terminal_processing();
     return_windows_memory_usage();
-    get_program_size();
     get_cpu_info();
 #endif
 #ifdef __linux__
@@ -77,5 +76,5 @@ int main(void)
 
 void call_custom_callback(const char *message)
 {
-    printf("Callback message: %s\n", message);
+    printf("%s: Callback message: %s\n", MODULE_NAME, message);
 }

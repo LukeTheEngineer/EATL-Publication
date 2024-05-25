@@ -140,6 +140,10 @@ long long perform_calculation(struct log_module *module, long long a, long long 
     {
         event_occured(module, "Calculation falls below threshold\n");
     }
+    else if(result > CALCULATION_MINIMUM && result < CALCULATION_MAXIMUM)
+    {
+        event_occured(module, "Calculation falls between both thresholds\n");
+    }
     else
     {
         printf("Result is within both thresholds (result: %lld)\n", result);
