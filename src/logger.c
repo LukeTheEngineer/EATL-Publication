@@ -104,7 +104,7 @@ void return_linux_memory_usage(void)
 
 #endif
 
-void event_occured(struct log_module *module, const char *message)
+static void event_occured(struct log_module *module, const char *message)
 {
     if (module == NULL)
     {

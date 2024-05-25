@@ -63,8 +63,8 @@ void return_linux_memory_usage(void);
 #define MAX_MODULE_NAME_LENGTH 50
 
 enum calc_limit {
-    CALCULATION_MAXIMUM = 100, /* If a calculation is over a certain amount, trigger an event */
-    CALCULATION_MINIMUM = 10   /* If a calculation is below this amount, trigger an event */
+    CALCULATION_MAXIMUM = 100000, /* If a calculation is over a certain amount, trigger an event */
+    CALCULATION_MINIMUM = 1   /* If a calculation is below this amount, trigger an event */
 };
 
 #define BBLK "\x1B[1;30m"
@@ -119,6 +119,8 @@ struct log_module
 {
     const char *module_name;
     logcallback callback;
+
+    /* In production environments, the programmer may add more callback functions to handle multiple events. */
 } PACKED;
 
 /**
@@ -159,8 +161,28 @@ struct log_message
     union log_data data;
 } PACKED;
 
-void event_occured(struct log_module *module, const char *message);
+/**
+ * @brief Notifies the user of an event occuring
+ * 
+ * This function is used internally to send data to callback functions to notify of specific events occuring
+ * 
+ * @param module Module containing the module name and callback functions(s)
+ * @param message Message to be passed onto the registered callback function
+ */
+static void event_occured(struct log_module *module, const char *message);
 
+/**
+ * @brief Performs a calculation
+ * 
+ * This function performs a calculation and compares it to two thresholds CALCULATION_MINIMUM 
+ * & CALCULATION_MAXIMUM to assess if any bounds are crossed. If any bounds are crossed, it calls the event_occured
+ * function to handle it accordingly.
+ * 
+ * @param module Module containing the log name and callback function(s)
+ * @param a      First element to be multiplied
+ * @param b      Second element to be multiplied
+ * @return long long 
+ */
 long long perform_calculation(struct log_module *module, long long a, long long b);
 
 #endif /* logger_h_ */
