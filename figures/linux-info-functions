@@ -1,0 +1,56 @@
+alucard@ALUCARD:~/EATL-Publication$ gdb LIN_nrf-event-driven
+GNU gdb (GDB) 15.0.50.20240111-git
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-pc-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from LIN_nrf-event-driven...
+(gdb) info functions
+All defined functions:
+
+File src/cpu_info.c:
+36:     long get_cpu_info(void);
+11:     long get_program_size(void);
+
+File src/logger.c:
+125:    long long perform_calculation(struct log_module *, long long, long long);
+98:     void return_linux_memory_usage(void);
+107:    static void event_occured(struct log_module *, const char *);
+
+File tests/nRF-event-driven/src/evt-driven.c:
+77:     void call_custom_callback(const char *);
+19:     int main(void);
+
+Non-debugging symbols:
+0x0000000000001000  _init
+0x0000000000001110  __cxa_finalize@plt
+0x0000000000001120  strncmp@plt
+0x0000000000001130  puts@plt
+0x0000000000001140  fclose@plt
+0x0000000000001150  __stack_chk_fail@plt
+0x0000000000001160  printf@plt
+0x0000000000001170  close@plt
+0x0000000000001180  read@plt
+0x0000000000001190  fgets@plt
+0x00000000000011a0  strtol@plt
+0x00000000000011b0  atol@plt
+0x00000000000011c0  open@plt
+0x00000000000011d0  fopen@plt
+0x00000000000011e0  getrusage@plt
+0x00000000000011f0  perror@plt
+0x0000000000001200  _start
+0x0000000000001230  deregister_tm_clones
+0x0000000000001260  register_tm_clones
+0x00000000000012a0  __do_global_dtors_aux
+0x00000000000012e0  frame_dummy
+0x0000000000001864  _fini
