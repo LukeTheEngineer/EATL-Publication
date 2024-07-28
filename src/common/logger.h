@@ -4,7 +4,7 @@
  *
  * @date May 19th, 2024
  *
- * @copyright Copyright (c) 2023 Lukas R. Jackson
+ * @copyright Copyright (c) 2024 Lukas R. Jackson
  *
  * @author Lukas R. Jackson (LukasJacksonEG@gmail.com)
  *
@@ -149,7 +149,7 @@ union log_data
  * @brief Construct a very basic log message
  * 
  * This struct contains only message and data since we're not too focused on other members.
- * Timestamps are not added since headers such as time.h don't work on embedded systems.
+ * Timestamps are not added since headers such as time.h doesn't work on embedded systems.
  * Microcontrollers lack proper hardware to return the time.
  * 
  * This may be updated in the future.

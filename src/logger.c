@@ -4,7 +4,7 @@
  *
  * @date May 19th, 2024
  *
- * @copyright Copyright (c) 2023 Lukas R. Jackson
+ * @copyright Copyright (c) 2024 Lukas R. Jackson
  *
  * @author Lukas R. Jackson (LukasJacksonEG@gmail.com)
  *
@@ -40,8 +40,8 @@
 #include <stdlib.h>
 #include <string.h>
 #ifdef _WIN32
-#include <windows.h>
-#include <psapi.h>
+//#include <windows.h>
+//#include <psapi.h>
 
 #endif
 
@@ -57,39 +57,6 @@
 
 #ifdef _WIN32
 
-void enable_virtual_terminal_processing()
-{
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (hOut == INVALID_HANDLE_VALUE)
-    {
-        return;
-    }
-
-    DWORD dwMode = 0;
-    if (!GetConsoleMode(hOut, &dwMode))
-    {
-        return;
-    }
-
-    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    SetConsoleMode(hOut, dwMode);
-}
-
-void return_windows_memory_usage()
-{
-    PROCESS_MEMORY_COUNTERS pmc;
-    if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc)))
-    {
-        printf("Working set size: %ld bytes\n", pmc.WorkingSetSize);
-        printf("Peak working set size: %ld bytes\n", pmc.PeakWorkingSetSize);
-        printf("Pagefile usage: %ld bytes\n", pmc.PagefileUsage);
-        printf("Peak pagefile usage: %ld bytes\n", pmc.PeakPagefileUsage);
-    }
-    else
-    {
-        printf("Could not get memory info\n");
-    }
-}
 
 #endif
 

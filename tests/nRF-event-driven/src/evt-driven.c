@@ -38,17 +38,9 @@ int main(void)
         };
 
 #ifdef _WIN32
-
-    const char *filename = "WIN-evnt-driven.exe";
-    long size = get_program_size(filename);
-    if (size != -1)
-    {
-        printf("The size of the program is: %ld bytes\n", size);
-    }
-
-    enable_virtual_terminal_processing();
-    return_windows_memory_usage();
-    get_cpu_info();
+    //enable_virtual_terminal_processing();
+    //return_windows_memory_usage();
+    //get_cpu_info();
 #endif
 #ifdef __linux__
     return_linux_memory_usage();

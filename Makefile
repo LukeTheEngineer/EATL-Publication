@@ -66,11 +66,11 @@ $(LINUX_MACRO_TARGET): $(LINUX_MACRO_OBJS)
 linux-event: $(LINUX_EVT_TARGET)
 
 $(LINUX_EVT_TARGET): $(LINUX_EVT_OBJS)
-	$(CC) $(LDFLAGS) $^ -o $@
+	$(CC) $(DEBUG_CFLAGS) $^ -o $@
 
 # Compilation rule
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(DEBUG_CFLAGS) -c $< -o $@
 
 # Clean rule for Windows macro logging method
 clean-win-macro:
