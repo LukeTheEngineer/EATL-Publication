@@ -34,6 +34,9 @@
  *          OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  *          OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef program_size_h
+#define program_size_h
+
 #include <inttypes.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -54,9 +57,9 @@
  * @param[in] FILE File to read from
  * @param[in] IMAGE_DOS_HEADER DOS header structure 
  * 
- * @return uint8_t 
+ * @return int 
  */
-uint8_t _READ_DOS_HEADER(FILE *, IMAGE_DOS_HEADER *);
+int _READ_DOS_HEADER(FILE *, IMAGE_DOS_HEADER *);
 
 /**
  * @brief Counts the total size of the PE header.
@@ -69,9 +72,9 @@ uint8_t _READ_DOS_HEADER(FILE *, IMAGE_DOS_HEADER *);
  * @param[in] DWORD peSignature
  * @param[in] long peOffset
  * 
- * @return uint8_t 
+ * @return int 
  */
-uint8_t _READ_PE_HEADER(FILE *, DWORD *, long);
+int _READ_PE_HEADER(FILE *, DWORD *, long);
 
 /**
  * @brief Counts the total size of the COFF file header
@@ -83,9 +86,9 @@ uint8_t _READ_PE_HEADER(FILE *, DWORD *, long);
  * @param[in] FILE File to read from
  * @param[in] IMAGE_FILE_HEADER FILE header structure
  * 
- * @return uint8_t 
+ * @return int 
  */
-uint8_t _READ_FILE_HEADER(FILE *, IMAGE_FILE_HEADER *);
+int _READ_FILE_HEADER(FILE *, IMAGE_FILE_HEADER *);
 
 /**
  * @brief Counts the total size of the optional(OPT) header 
@@ -108,9 +111,9 @@ uint8_t _READ_FILE_HEADER(FILE *, IMAGE_FILE_HEADER *);
  * @param[in] FILE File to read from
  * @param[in] IMAGE_OPTIONAL_HEADER OPT header structure
  * 
- * @return uint8_t 
+ * @return int 
  */
-uint8_t _READ_OPT_HEADER(FILE *, IMAGE_OPTIONAL_HEADER *);
+int _READ_OPT_HEADER(FILE *, IMAGE_OPTIONAL_HEADER *);
 
 /**
  * @brief Counts the total size of the section header
@@ -125,9 +128,9 @@ uint8_t _READ_OPT_HEADER(FILE *, IMAGE_OPTIONAL_HEADER *);
  * @param[in] IMAGE_SECTION_HEADER section header structure
  * @param[in] NUMBER_OF_SECTIONS total number of sections
  * 
- * @return uint8_t 
+ * @return int 
  */
-uint8_t _READ_SECTION_HEADERS(FILE *, IMAGE_SECTION_HEADER *, int);
+int _READ_SECTION_HEADERS(FILE *, IMAGE_SECTION_HEADER *, int);
 
 /**
  * @brief Calculates the total size of all headers within a PE file
@@ -180,3 +183,5 @@ int _READ_SECTION_HEADERS_LINUX(FILE *, Elf32_Shdr *, int, int);
 size_t calculate_total_header_size(const Elf32_Shdr *, int);
 
 #endif /* End of __linux__ MACRO */
+
+#endif /* program_size_h */
