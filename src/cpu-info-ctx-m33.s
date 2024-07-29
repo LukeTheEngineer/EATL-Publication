@@ -6,19 +6,19 @@
 ; Part of the Embedded Approach To Logging(EATL) publication
 
     .section .data
-cpuinfo:    .space 4          // Placeholder for CPU info string
+cpuinfo:    .space 4          ; Placeholder for CPU info string
 
     .section .text
     .global _start
 
 _start:
-    // Read CPU Identification Base Register (CPUID)
-    mrs r0, CPUID            // Read CPUID register into R0
+    ; Read CPU Identification Base Register (CPUID)
+    mrs r0, CPUID            ; Read CPUID register into R0
 
-    // Store the result into memory (cpuinfo)
-    ldr r1, =cpuinfo         // Load address of cpuinfo
-    str r0, [r1]             // Store the value of CPUID into cpuinfo
+    ; Store the result into memory (cpuinfo)
+    ldr r1, =cpuinfo         ; Load address of cpuinfo
+    str r0, [r1]             ; Store the value of CPUID into cpuinfo
 
-    // Exit (assuming a bare-metal environment, we'll just loop indefinitely)
+    ; Exit (assuming a bare-metal environment, we'll just loop indefinitely)
 loop:
-    b loop                  // Infinite loop to end program
+    b loop                  ; Infinite loop to end program
