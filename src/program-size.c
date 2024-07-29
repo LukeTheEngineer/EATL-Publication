@@ -167,13 +167,13 @@ int main(int argc, char *argv[])
 #ifdef _WIN32
 
 // Function implementations
-uint8_t _READ_DOS_HEADER(FILE *file, IMAGE_DOS_HEADER *dosHeader)
+int _READ_DOS_HEADER(FILE *file, IMAGE_DOS_HEADER *dosHeader)
 {
     return fread(dosHeader, sizeof(IMAGE_DOS_HEADER), 1, file) == 1 &&
            dosHeader->e_magic == IMAGE_DOS_SIGNATURE;
 }
 
-uint8_t _READ_PE_HEADER(FILE *file, DWORD *peSignature, long peOffset)
+int _READ_PE_HEADER(FILE *file, DWORD *peSignature, long peOffset)
 {
     if (fseek(file, peOffset, SEEK_SET) != 0)
     {
@@ -183,17 +183,17 @@ uint8_t _READ_PE_HEADER(FILE *file, DWORD *peSignature, long peOffset)
            *peSignature == IMAGE_NT_SIGNATURE;
 }
 
-uint8_t _READ_FILE_HEADER(FILE *file, IMAGE_FILE_HEADER *fileHeader)
+int _READ_FILE_HEADER(FILE *file, IMAGE_FILE_HEADER *fileHeader)
 {
     return fread(fileHeader, sizeof(IMAGE_FILE_HEADER), 1, file) == 1;
 }
 
-uint8_t _READ_OPT_HEADER(FILE *file, IMAGE_OPTIONAL_HEADER *optionalHeader)
+int _READ_OPT_HEADER(FILE *file, IMAGE_OPTIONAL_HEADER *optionalHeader)
 {
     return fread(optionalHeader, sizeof(IMAGE_OPTIONAL_HEADER), 1, file) == 1;
 }
 
-uint8_t _READ_SECTION_HEADERS(FILE *file, IMAGE_SECTION_HEADER *sectionHeaders, int numberOfSections)
+int _READ_SECTION_HEADERS(FILE *file, IMAGE_SECTION_HEADER *sectionHeaders, int numberOfSections)
 {
     return fread(sectionHeaders, sizeof(IMAGE_SECTION_HEADER), numberOfSections, file) == numberOfSections;
 }
