@@ -17,7 +17,10 @@ ifeq ($(OS),Windows_NT)
 	WINDOWS_EVT_OBJS = tests\nRF-event-driven\src\evt-driven.o src\logger.o src\cpu_info.o
 	WINDOWS_EVT_TARGET = WIN_nrf-event-driven.exe
 
-
+	# Program Size compilation
+	WINDOWS_PROG_SIZE_SRCS = src\program-size.c
+	WINDOWS_PROG_SIZE_OBJS = src\program-size.o
+	WINDOWS_PROG_SIZE_TARGET = lsize
 
 	# Create custom rules for compiling certain folders. 
 	

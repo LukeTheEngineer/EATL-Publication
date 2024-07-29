@@ -38,6 +38,7 @@
 #include "program-size.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #ifdef _WIN32
 
@@ -129,7 +130,7 @@ int main(int argc, char *argv[])
 #ifdef __linux__
 
     Elf32_Ehdr elfHeader;
-    if (!readELFHeader(file, &elfHeader))
+    if (!_READ_ELF_HEADER(file, &elfHeader))
     {
         fprintf(stderr, "Not a valid ELF file: %s\n", filename);
         fclose(file);
@@ -144,7 +145,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    if (!readSectionHeaders(file, sectionHeaders, elfHeader.e_shnum, elfHeader.e_shoff))
+    if (!_READ_SECTION_HEADERS_LINUX(file, sectionHeaders, elfHeader.e_shnum, elfHeader.e_shoff))
     {
         fprintf(stderr, "Error reading section headers\n");
         free(sectionHeaders);
@@ -152,7 +153,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    size_t totalSize = calculateTotalSectionSize(sectionHeaders, elfHeader.e_shnum);
+    size_t totalSize = calculate_total_header_size(sectionHeaders, elfHeader.e_shnum);
 
     free(sectionHeaders);
     fclose(file);
@@ -214,7 +215,7 @@ size_t calculate_total_header_size(const IMAGE_SECTION_HEADER *sectionHeaders, i
 
 #include <elf.h>
 
-int readELFHeader(FILE *file, Elf32_Ehdr *elfHeader)
+int _READ_ELF_HEADER(FILE *file, Elf32_Ehdr *elfHeader)
 {
     if (fread(elfHeader, sizeof(Elf32_Ehdr), 1, file) != 1)
     {
@@ -223,7 +224,7 @@ int readELFHeader(FILE *file, Elf32_Ehdr *elfHeader)
     return memcmp(elfHeader->e_ident, ELFMAG, SELFMAG) == 0;
 }
 
-int readSectionHeaders(FILE *file, Elf32_Shdr *sectionHeaders, int sectionHeaderCount, int sectionHeaderOffset)
+int _READ_SECTION_HEADERS_LINUX(FILE *file, Elf32_Shdr *sectionHeaders, int sectionHeaderCount, int sectionHeaderOffset)
 {
     if (fseek(file, sectionHeaderOffset, SEEK_SET) != 0)
     {
@@ -232,7 +233,7 @@ int readSectionHeaders(FILE *file, Elf32_Shdr *sectionHeaders, int sectionHeader
     return fread(sectionHeaders, sizeof(Elf32_Shdr), sectionHeaderCount, file) == sectionHeaderCount;
 }
 
-size_t calculateTotalSectionSize(const Elf32_Shdr *sectionHeaders, int sectionHeaderCount)
+size_t calculate_total_header_size(const Elf32_Shdr *sectionHeaders, int sectionHeaderCount)
 {
     size_t totalSize = 0;
     for (int i = 0; i < sectionHeaderCount; i++)

@@ -1,6 +1,6 @@
 /**
  * @file program-size.h
- * @brief Getting the size of a program using C++.
+ * @brief Getting the size of a program in C.
  *
  * @date July 27th, 2024
  *
@@ -147,10 +147,36 @@ size_t calculate_total_header_size(const IMAGE_SECTION_HEADER *, int);
 
 #include <elf.h>
 
-uint8_t _READ_ELF_HEADER(FILE *, Elf32_Ehdr *);
+/**
+ * @brief Reads and calculates the total size of the executable linkable format(ELF) file
+ * 
+ * @param[in] FILE File to read from 
+ * @param[in] Elf32_Ehdr ELF header structure
+ * 
+ * @return int
+ */
+int _READ_ELF_HEADER(FILE *, Elf32_Ehdr *);
 
-uint8_t _READ_SECTION_HEADERS_LINUX(FILE *, Elf_Shdr *, int, int);
+/**
+ * @brief Reads and calculates section headers specific to the Linux format ELF
+ * 
+ * @param[in] FILE File to read from
+ * @param[in] Elf32_Shdr ELF header structure
+ * @param[in] int Section header count
+ * @param[in] int Section header offset
+ * 
+ * @return int
+ */
+int _READ_SECTION_HEADERS_LINUX(FILE *, Elf32_Shdr *, int, int);
 
+/**
+ * @brief Calculates the total header size 
+ * 
+ * @param[in] Elf32_Shdr ELF header structure 
+ * @param[in] int Section header count
+ * 
+ * @return int
+ */
 size_t calculate_total_header_size(const Elf32_Shdr *, int);
 
 #endif /* End of __linux__ MACRO */
