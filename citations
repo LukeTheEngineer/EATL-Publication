@@ -7,3 +7,9 @@ A Dive into the PE file format - PE file structure - Part 2: DOS Header, DOS Stu
 Analyzing Structure of Executable Programs (.exe files)
     https://eshagalawatta.medium.com/analyzing-structure-of-executable-programs-exe-files-821b2d531a4
     
+Getting processor info using CPUID(Assembly)
+    https://nixhacker.com/getting-processor-info-using-cpuid/
+
+How to Get CPU Vendor String, Using x86 Assembly Instruction
+    https://www.go4expert.com/articles/cpu-vendor-string-using-x86-assembly-t24794/
+    

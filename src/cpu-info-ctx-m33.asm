@@ -5,20 +5,21 @@
 ; This file simply returns CPU info for the ARMv8-M architecture
 ; Part of the Embedded Approach To Logging(EATL) publication
 
-    .section .data
-cpuinfo:    .space 4          ; Placeholder for CPU info string
-
     .section .text
     .global _start
 
 _start:
-    ; Read CPU Identification Base Register (CPUID)
-    mrs r0, CPUID            ; Read CPUID register into R0
+    ; Read CPUID
+    LDR     R0, =0xE000ED00   ; Load base address of SCB
+    LDR     R1, [R0]          ; Read CPUID register
 
-    ; Store the result into memory (cpuinfo)
-    ldr r1, =cpuinfo         ; Load address of cpuinfo
-    str r0, [r1]             ; Store the value of CPUID into cpuinfo
+    ; Optionally, you can add code to process R1
 
-    ; Exit (assuming a bare-metal environment, we'll just loop indefinitely)
-loop:
-    b loop                  ; Infinite loop to end program
+    ; Read DHCSR
+    LDR     R0, =0xE000EDF0   ; Load base address of Core Debug Register
+    LDR     R2, [R0]          ; Read DHCSR register
+
+    ; Optionally, you can add code to process R2
+
+    ; End of program (Loop forever)
+    B       .
